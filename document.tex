@@ -1,0 +1,867 @@
+\documentclass[8pt,aspectratio=169]{beamer}
+\usetheme{metropolis} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usetheme{default}
+\usepackage{listings}
+\begin{document}
+	\author{Guillaume Derval \& contributeurs}
+	\title{Un rapide résumé de la matière du cours}
+	%\subtitle{}
+	%\logo{}
+	%\institute{}
+	%\date{}
+	%\subject{}
+	%\setbeamercovered{transparent}
+	%\setbeamertemplate{navigation symbols}{}
+	\begin{frame}[plain]
+	\maketitle
+\end{frame}
+
+\section{Les implémentations des TADs vus existantes en Java}
+
+\begin{frame}{Les implémentations des TADs vus existantes en Java}
+Ces slides passent quelques minutes sur les implémentations des différents TADs vus au cours. Ils mèlent TADs "purs" (sans implémentation) avec des TADs "pré-implémentés" par Java.
+A vous de savoir faire la différence entre un TAD et une implémentation ;-)
+
+Quand vous voyez une complexité en rouge, et que vous comptez utiliser cette méthode dans une structure de donnée, ça veut probablement dire que vous avez choisi la mauvaise structure de donnée.
+
+Toutes les méthodes qui ne sont pas listées sont généralement non-standard ET couteuses, donc à éviter. La Javadoc est votre amie.
+
+Vous n'êtes pas à l'abri d'une erreur dans ces slides ;-)
+\end{frame}
+
+\begin{frame}
+\frametitle{Tableaux (non-dynamiques)}
+\centering
+\begin{tabular}{lll}
+	Utilité & \multicolumn{2}{l}{Stockage d'un nombre connu d'éléments}\\
+	Contrainte & \multicolumn{2}{l}{Nombre d'élément fixé}\\
+	Instanciation & \multicolumn{2}{l}{\texttt{new Type[taille]} (ex: \texttt{new int[8]})}\\
+\end{tabular}\\
+\vspace{0.5cm}
+\centering
+\begin{tabular}{lll}
+	\multicolumn{3}{c}{\textbf{Méthodes}} \\
+	\textit{Nom} & \textit{Java} & \textit{Complexité} \\
+	Accès à l'élement \texttt{i} & \texttt{tableau[i]} & $\Theta(1)$\\
+	Assignation de \texttt{x} à l'élem \texttt{i} & \texttt{tableau[i] = x} & $\Theta(1)$\\
+\end{tabular}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tableaux (dynamiques)}
+\centering
+\begin{tabular}{ll}
+	Utilité & Stockage d'éléments, accès aléatoire\\
+	Instanciation & \texttt{new ArrayList<Type>()}\\
+\end{tabular}\\
+\vspace{0.5cm}
+\centering
+\begin{tabular}{lll}
+	\multicolumn{3}{c}{\textbf{Méthodes} sur un objet \texttt{o} de taille $n$} \\
+	\textit{Nom} & \textit{Java} & \textit{Complexité} \\
+	Accès à l'élement \texttt{i} & \texttt{o.get(i)} & $\Theta(1)$\\
+	Assignation de \texttt{x} à l'élem \texttt{i} & \texttt{o.set(i, x)} & $\Theta(1)$\\
+	Ajouter à la fin & \texttt{o.add(x)} & $\Theta(1)$ \color{orange}amorti\\
+	Supprimer à la fin & \texttt{o.remove(n-1)} & $\Theta(1)$ \color{orange}amorti\\
+	Ajouter n'importe où & \texttt{o.add(i, x)} & $\color{red}\mathcal{O}(n)$\\
+	Supprimer n'importe où & \texttt{o.remove(i)} & $\color{red}\mathcal{O}(n)$\\
+	Contiens \texttt{x} ? & \texttt{o.contains(x)} & $\color{red}\mathcal{O}(n)$\\
+\end{tabular}
+\end{frame}
+
+\begin{frame}
+\frametitle{Liste (doublement) chainées}
+\centering
+\begin{tabular}{ll}
+	Utilité & Stockage d'éléments, accès séquentiel\\
+	Instanciation & \texttt{new LinkedList<Type>()}\\
+\end{tabular}\\
+\vspace{0.5cm}
+\centering
+\begin{tabular}{lll}
+	\multicolumn{3}{c}{\textbf{Méthodes} sur un objet \texttt{o} de taille $n$} \\
+	\textit{Nom} & \textit{Java} & \textit{Complexité} \\
+	Accès au premier élément & \texttt{o.getFirst()} & $\Theta(1)$\\
+	Ajouter au début & \texttt{o.addFirst(x)} & $\Theta(1)$\\
+	Supprimer au début & \texttt{o.removeFirst()} & $\Theta(1)$\\
+	Accès au dernier élément & \texttt{o.getLast()} & $\Theta(1)$\\
+	Ajouter à la fin & \texttt{o.addLast(x)} & $\Theta(1)$\\
+	Supprimer à la fin & \texttt{o.removeLast()} & $\Theta(1)$\\
+	Accès à l'élement \texttt{i} & \texttt{o.get(i)} & $\color{red}\mathcal{O}(n)$\\
+	Assignation de \texttt{x} à l'élem \texttt{i} & \texttt{o.set(i, x)} & $\color{red}\mathcal{O}(n)$\\
+	Ajouter n'importe où & \texttt{o.add(i, x)} & $\color{red}\mathcal{O}(n)$\\
+	Supprimer n'importe où & \texttt{o.remove(i)} & $\color{red}\mathcal{O}(n)$\\
+	Contiens \texttt{x} ? & \texttt{o.contains(x)} & $\color{red}\mathcal{O}(n)$\\
+\end{tabular}
+\end{frame}
+
+\begin{frame}
+\frametitle{Queue}
+\centering
+\begin{tabular}{ll}
+	Utilité & First-in, first-out (FIFO)\\
+	Instanciation & \texttt{Queue<Type> o = new LinkedList<>()}\\
+	& \color{red} (\texttt{Queue} est une interface en Java!)\\
+\end{tabular}\\
+\vspace{0.5cm}
+\centering
+\begin{tabular}{lll}
+	\multicolumn{3}{c}{\textbf{Méthodes} sur un objet \texttt{o} de taille $n$} \\
+	\textit{Nom} & \textit{Java} & \textit{Complexité} \\
+	Accès au premier élément & \texttt{o.element()} & $\Theta(1)$\\
+	Ajouter (à la fin) & \texttt{o.add(x)} & $\Theta(1)$\\
+	Supprimer (au début) & \texttt{o.remove()} & $\Theta(1)$\\
+\end{tabular}\\
+\vspace{0.5cm}
+\color{blue} Quand vous utilisez le TAD Queue, vous ne devriez JAMAIS devoir utiliser d'autres méthodes (si ce n'est \texttt{size} et \texttt{empty}). 
+
+\color{blue} Attention, ces fonctions peuvent retourner des exceptions si la Queue est vide.
+\end{frame}
+
+\begin{frame}
+\frametitle{Stack}
+\centering
+\begin{tabular}{ll}
+	Utilité & Last-in, first-out (LIFO)\\
+	Instanciation & \texttt{Stack<Type> o = new Stack<>()}
+\end{tabular}\\
+\vspace{0.5cm}
+\centering
+\begin{tabular}{lll}
+	\multicolumn{3}{c}{\textbf{Méthodes} sur un objet \texttt{o} de taille $n$} \\
+	\textit{Nom} & \textit{Java} & \textit{Complexité} \\
+	Accès à l'élément au dessus de la stack & \texttt{o.peek()} & $\Theta(1)$\\
+	Ajouter (au dessus) & \texttt{o.push(x)} & $\Theta(1)$\\
+	Supprimer (au dessus) & \texttt{o.pop()} & $\Theta(1)$\\
+\end{tabular}\\
+\vspace{0.5cm}
+\color{blue} Quand vous utilisez le TAD Stack, vous ne devriez JAMAIS devoir utiliser d'autres méthodes (si ce n'est \texttt{size} et \texttt{empty}). 
+
+\color{blue} Vous pouvez (mais ne \textit{devez} pas) jeter également un oeil à l'interface Deque (double-ended queue, qui implémente à la fois les TADs Stack et Queue) et ses implémentations: \texttt{LinkedList} et \texttt{ArrayDeque}.
+
+\color{red} Ne JAMAIS itérer (foreach ou \texttt{iterator}) sur une stack. Les éléments sont retournés à l'envers...
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Liste triée (custom)}
+\centering
+\begin{tabular}{ll}
+	Utilité & Stockage d'éléments de manière triée\\
+	Instanciation & A implémenter vous-même à partir de LinkedList\\
+	& \color{red} En pratique, je ne vois pas quand ça pourrait servir. \\
+	& \color{red} Uniquement ici pour pouvoir comparer avec ce qui suit.
+	
+\end{tabular}\\
+\vspace{0.5cm}
+\centering
+\begin{tabular}{ll}
+	\multicolumn{2}{c}{\textbf{Méthodes} sur un objet \texttt{o} de taille $n$} \\
+	\textit{Nom} & \textit{Complexité} \\
+	Ajouter au bon endroit & $\color{red}\mathcal{O}(n)$\\
+    Supprimer le plus petit/grand & $\Theta(1)$\\
+    Contient ? & $\color{red}\mathcal{O}(n)$\\
+\end{tabular}\\
+\vspace{0.5cm}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tableau trié (custom)}
+\centering
+\begin{tabular}{ll}
+	Utilité & Stockage d'éléments de manière triée\\
+	Instanciation & A implémenter vous-même à partir de ArrayList ou d'un tableau Java\\
+	& \color{red} En pratique, je ne vois pas quand ça pourrait servir. \\
+	& \color{red} Uniquement ici pour pouvoir comparer avec ce qui suit.
+	
+\end{tabular}\\
+\vspace{0.5cm}
+\centering
+\begin{tabular}{ll}
+	\multicolumn{2}{c}{\textbf{Méthodes} sur un objet \texttt{o} de taille $n$} \\
+	\textit{Nom} & \textit{Complexité} \\
+	Ajouter au bon endroit & $\color{red}\mathcal{O}(n)$\\
+	Supprimer le plus petit & $\color{red}\Theta(n)$\\
+	Supprimer le plus grand & $\Theta(1)$\\
+	Contient ? & $\mathcal{O}(\log n)$ (binary search)\\
+\end{tabular}\\
+\vspace{0.5cm}
+\end{frame}
+
+\begin{frame}
+\frametitle{TreeSet: Arbre autobalançant (ensemble)}
+\centering
+\begin{tabular}{ll}
+	Utilité & Ensemble, trié\\
+	Instanciation & \texttt{new TreeSet<Type>}\\
+	C'est quoi? & Derrière, c'est un red-black tree\\
+	& \color{red} Pas de doublons (c'est un ensemble)\\
+	& \color{red} Les éléments doivent être comparable
+	
+\end{tabular}\\
+\centering
+\begin{tabular}{lll}
+	\multicolumn{3}{c}{\textbf{Méthodes} sur un objet \texttt{o} de taille $n$} \\
+	\textit{Nom} & \textit{Java} & \textit{Complexité} \\
+	Ajouter & \texttt{o.add(x)} & $\mathcal{O}(\log n)$\\
+	Supprimer & \texttt{o.remove(x)} & $\mathcal{O}(\log n)$\\
+	Contient ? & \texttt{o.contains(x)} & $\mathcal{O}(\log n)$\\
+	Trouver l'élément en dessous (ou =) & \texttt{o.floor(x)} & $\mathcal{O}(\log n)$\\
+	Trouver l'élément au dessus (ou =) & \texttt{o.ceil(x)} & $\mathcal{O}(\log n)$\\
+	Trouver l'élément str. en dessous & \texttt{o.higher(x)} & $\mathcal{O}(\log n)$\\
+	Trouver l'élément str. au dessus & \texttt{o.lower(x)} & $\mathcal{O}(\log n)$\\
+\end{tabular}\\
+\vspace{0.5cm}
+\color{blue} Autre méthode utile: \texttt{subset}, qui permet d'extraire une partie de l'arbre, à cout constant. \texttt{descendingIterator} est aussi fort pratique.
+\end{frame}
+
+\begin{frame}
+\frametitle{HashSet: table de hachage (ensemble)}
+\centering
+\begin{tabular}{ll}
+	Utilité & Ensemble\\
+	Instanciation & \texttt{new HashSet<Type>}\\
+	C'est quoi? & Une table de hachage\\
+	& \color{red} Pas de doublons (c'est un ensemble)\\
+	& \color{red} Les éléments doivent être hashable (!!!)\\
+	& \color{red} Non trié
+	
+\end{tabular}\\
+\vspace{0.5cm}
+\centering
+\begin{tabular}{lll}
+	\multicolumn{3}{c}{\textbf{Méthodes} sur un objet \texttt{o} de taille $n$} \\
+	\textit{Nom} & \textit{Java} & \textit{Complexité} \\
+	Ajouter & \texttt{o.add(x)} & $\mathcal{O}(1)$ \color{orange} amorti\\
+	Supprimer & \texttt{o.remove(x)} & $\mathcal{O}(1)$ \color{orange} amorti\\
+	Contient ? & \texttt{o.contains(x)} & $\mathcal{O}(1)$ \color{orange} amorti\\
+\end{tabular}\\
+\vspace{0.5cm}
+\color{blue} Sous contrainte que les hash sont bien répartis!
+\end{frame}
+
+\begin{frame}
+\frametitle{TreeMap: arbre autobalançant (dictionnaire)}
+\centering
+\begin{tabular}{ll}
+	Utilité & Dictionnaire\\
+	Instanciation & \texttt{new TreeMap<TypeCle,TypeValeur>}\\
+	C'est quoi? & Un red-black tree (ou équivalent)\\
+	& \color{red} Pas de doublons dans les clés (c'est un dictionnaire)\\
+	& \color{red} Les clés doivent être comparables
+\end{tabular}\\
+\vspace{0.5cm}
+\centering
+\begin{tabular}{lll}
+	\multicolumn{3}{c}{\textbf{Méthodes} sur un objet \texttt{o} de taille $n$} \\
+	\textit{Nom} & \textit{Java} & \textit{Complexité} \\
+	Ajouter (clé \texttt{x}, valeur \texttt{y})& \texttt{o.put(x, y)} & $\mathcal{O}(\log n)$\\
+	Get clé & \texttt{o.get(x)} & $\mathcal{O}(\log n)$\\
+	Supprimer clé & \texttt{o.remove(x)} & $\mathcal{O}(\log n)$\\
+	Contient clé ? & \texttt{o.containsKey(x)} & $\mathcal{O}(\log n)$\\
+\end{tabular}\\
+\vspace{0.5cm}
+\color{blue} Les fonctions de TreeSet sont aussi disponible pour les clés (\texttt{ceilingKey}, \texttt{subMap}...).
+
+\color{blue} Voir slide plus loin pour un tips pour itérer sur les Maps et notamment les TreeMaps.
+
+\color{red} Même s'il existe des méthodes pour chercher des valeur (\texttt{containsValue}, ...), elles sont en $\mathcal{O}(n)$ généralement.
+\end{frame}
+
+\begin{frame}
+\frametitle{HashMap: table de hachage (dictionnaire)}
+\centering
+\begin{tabular}{ll}
+	Utilité & Ensemble\\
+	Instanciation & \texttt{new HashMap<TypeClé,TypeValeur>}\\
+	C'est quoi? & Une table de hachage\\
+	& \color{red} Pas de doublons de clé (c'est un dictionnaire)\\
+	& \color{red} Les clés doivent être hashable (!!!)\\
+	& \color{red} Non trié
+	
+\end{tabular}\\
+\vspace{0.5cm}
+\centering
+\begin{tabular}{lll}
+	\multicolumn{3}{c}{\textbf{Méthodes} sur un objet \texttt{o} de taille $n$} \\
+	\textit{Nom} & \textit{Java} & \textit{Complexité} \\
+	Ajouter (clé \texttt{x}, valeur \texttt{y})& \texttt{o.put(x, y)} & $\mathcal{O}(1)$ \color{orange} amorti\\
+	Get clé & \texttt{o.get(x)} & $\mathcal{O}(1)$ \color{orange} amorti\\
+	Supprimer clé & \texttt{o.remove(x)} & $\mathcal{O}(1)$ \color{orange} amorti\\
+	Contient clé ? & \texttt{o.containsKey(x)} & $\mathcal{O}(1)$ \color{orange} amorti\\
+\end{tabular}\\
+\vspace{0.5cm}
+\color{blue} Sous contrainte que les hash sont bien répartis!
+
+\color{blue} Voir slide plus loin pour un tips pour itérer sur les Maps et notamment les TreeMaps.
+
+\color{red} Même s'il existe des méthodes pour chercher des valeur (\texttt{containsValue}, ...), elles sont en $\mathcal{O}(n)$ généralement.
+\end{frame}
+
+\begin{frame}
+\frametitle{PriorityQueue: file de priorité}
+\centering
+\begin{tabular}{ll}
+	Utilité & Queue, mais avec des priorités.\\
+	Instanciation & \texttt{new PriorityQueue<Type>}\\
+	C'est quoi? & Un heap binaire basée sur un tableau\\
+	& \color{red} Les valeur doivent être comparables
+	
+\end{tabular}\\
+\vspace{0.5cm}
+\centering
+\begin{tabular}{lll}
+	\multicolumn{3}{c}{\textbf{Méthodes} sur un objet \texttt{o} de taille $n$} \\
+	\textit{Nom} & \textit{Java} & \textit{Complexité} \\
+	Ajouter & \texttt{o.add(x)} & $\Theta(\log n)$\\
+	Voir premier élément & \texttt{o.peek(x)} & $\Theta(1)$\\
+	Retirer premier élément & \texttt{o.poll(x)} & $\Theta(\log n)$
+\end{tabular}\\
+\vspace{0.5cm}
+
+\color{red} Si vous utilisez n'importe quelle autre méthode (\texttt{remove}, \texttt{iterator}, ...), une PQ n'est pas la bonne structure. Généralement c'est du $\mathcal{O}(n)$.
+
+\color{red} L'itérateur sur les PQ ne donne pas les éléments dans l'ordre.
+\end{frame}
+
+\begin{frame}
+\frametitle{Union-find}
+\centering
+\begin{tabular}{ll}
+	Utilité & Ensemble disjoints. Fusion d'ensembles.\\
+	Instanciation & n'existe pas en java, à faire vous-même!\\
+	& \color{red} Implémenter le weighted quick union!
+	
+\end{tabular}\\
+\vspace{0.5cm}
+\centering
+\begin{tabular}{lll}
+	\multicolumn{3}{c}{\textbf{Méthodes} sur un objet \texttt{o} de taille $n$} \\
+	\textit{Nom} & \textit{Java} & \textit{Complexité} \\
+	Find & \texttt{o.find(x)} & $\mathcal{O}(\log n)$\\
+	Union & \texttt{o.union(x, y)} & $\mathcal{O}(\log n)$
+\end{tabular}\\
+\vspace{0.5cm}
+
+\color{blue} Avec la path compression, vous pouvez descendre jusque $\mathcal{O}(\alpha(n))$ amorti ($\alpha$ étant la fonction inverse d'Ackermann (cfr wikipédia ;-)). $\alpha(2^{32}) < 4$).
+\end{frame}
+
+\section{Quel TAD/implémentation choisir?}
+
+\begin{frame}
+\frametitle{Quel TAD/implémentation choisir?}
+\color{red} Liste non-exhaustive et heuristique évidemment...
+\begin{itemize}
+	\item Je veux juste stocker des éléments...
+		\begin{itemize}
+			\item Et faire de l'accès séquentiel $\rightarrow$ \texttt{LinkedList}
+			\item Et faire de l'accès aléatoire...
+				\begin{itemize}
+					\item Et ajouter des éléments au fur et à mesure $\rightarrow$ \texttt{ArrayList}
+					\item Et je connais la taille au départ $\rightarrow$ tableau \texttt{type[]}
+				\end{itemize}
+		\end{itemize}
+	\item Je veux maintenir un ensemble (sans doublon) $\rightarrow$ \texttt{HashSet} (hashable) ou \texttt{TreeSet} (comparable)
+	\item Je veux utiliser contains $\rightarrow$ \texttt{HashSet} (hashable) ou \texttt{TreeSet} (comparable)
+	\item Je veux maintenir un ensemble trié $\rightarrow$ \texttt{TreeSet}
+	\item Je veux faire un mapping clé vers valeur...
+		\begin{itemize}
+			\item trié $\rightarrow$ \texttt{TreeMap}
+			\item non-trié $\rightarrow$ \texttt{HashMap}
+		\end{itemize}
+	\item Je veux faire de l'ajout/suppression/get, seulement au début et à la fin $\rightarrow$ \texttt{LinkedList}, \texttt{Queue} ou \texttt{Stack} en fonction
+	\item J'ai des priorités à gérer, toujours le truc le plus prioritaire en premier $\rightarrow$ \texttt{PriorityQueue}
+	\item Je veux itérer sur le contenu $\rightarrow$ n'importe quoi sauf \texttt{Stack, Queue, PQ, UF, ...}
+	\item Je veux fusionner des ensembles $\rightarrow$ UF
+\end{itemize}
+\end{frame}
+
+\section{Mais comment ça marche?}
+
+\begin{frame}
+\frametitle{Binary Search}
+\begin{itemize}
+	\item Dans un tableau trié, disons qu'on cherche un élément $x$.
+	\item Prendre le milieu du tableau, $y$. Si $x=y$, on a gagné.
+	\item Si $x < y$, alors $x$ est forcément à gauche; sinon, il est à droite.
+	\item Appeler récursivement sur la moitié gauche ou droite du tableau en fonction.
+\end{itemize}
+$\mathcal{O}(\log n)$
+\end{frame}
+
+\begin{frame}
+\frametitle{Propriétés des tris}
+\begin{itemize}
+	\item En-place: un tri en place utilise un quantité constante de mémoire supplémentaire (complexité en mémoire \textbf{supplémentaire} $\mathcal{O}(1)$).
+	\item Stable: Deux valeurs égales du point de vue du tri restent dans le même ordre après le tri.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Selection sort}
+Dans un array non-trié:
+\begin{itemize}
+	\item Trouver l'élement le plus petit pas encore trié
+	\item Le mettre au bon endroit
+	\item Répeter
+\end{itemize}
+$\mathcal{O}(n^2)$
+\end{frame}
+
+\begin{frame}
+\frametitle{Insertion sort}
+Créer un array. Pour chaque élément de l'array non trié:
+\begin{itemize}
+	\item Trouver l'endroit où le mettre
+	\item L'y mettre
+	\item Eventuellement décaler tout ce qui se trouve à droite...
+\end{itemize}
+$\mathcal{O}(n^2)$
+\end{frame}
+
+\begin{frame}
+\frametitle{Merge sort}
+\begin{itemize}
+	\item Faire des petits paquets de 2
+	\item Trier les paquets de deux
+	\item Fusionner les paquets deux par deux, avec la technique du "double pointeur" (qui est en $\mathcal{O}(n)$ pour rappel)
+	\item Et ce jusqu'à ce que tout soit fusionné
+\end{itemize}
+$\mathcal{O}(n\log n)$
+\end{frame}
+
+\begin{frame}
+\frametitle{Quick sort}
+\begin{itemize}
+	\item Choisir un pivot
+	\item Mettre les éléments plus petit que le pivot à gauche du pivot, les autres à droite
+	\item Appeler récursivement à gauche du pivot et à droite du pivot
+\end{itemize}
+$\mathcal{O}(n\log n)$ moyen, $\mathcal{O}(n^2)$ en général
+\end{frame}
+
+\begin{frame}
+\frametitle{Quick select}
+\begin{itemize}
+	\item Trouve le $k$ième plus grand élément dans un tableau non trié
+	\item Choisir un pivot
+	\item Mettre les éléments plus petit que le pivot à gauche du pivot, les autres à droite
+	\item Si le pivot se retrouve à la position $k$, stop (c'est l'élément recherché).
+	\item Si pas, si $k$ < position du pivot, appeler récursivement uniquement à gauche, et à droite sinon.
+\end{itemize}
+$\mathcal{O}(n)$ moyen, $\mathcal{O}(n^2)$ en général
+\end{frame}
+
+\begin{frame}
+\frametitle{Heap sort}
+\begin{itemize}
+	\item Transformer l'array en heap (heapify en $\mathcal{O}(n)$) ou mettre tout dans un heap un à un ($\mathcal{O}(n\log n)$)
+	\item Depop les éléments du heap un à un. Ils sont donc triés. $\mathcal{O}(n\log n)$
+\end{itemize}
+$\mathcal{O}(n\log n)$
+\end{frame}
+
+\begin{frame}
+\frametitle{Heap binaires}
+\begin{itemize}
+	\item Arbre binaire complet (sauf éventuellement la dernière couche, qui est complète "a gauche")
+	\item Propriété: les enfants d'un noeud sont plus grands que lui (pour un min-heap)
+	\item Implémentation via un tableau. Les enfants du noeud $i$ sont en position $2i$ et $2i+1$. Attention, par simplicité on commence la numérotation à 1.
+	\item Ajout: mettre dans la première position libre en bas a gauche. Faire remonter (échanger avec le parent) jusqu'à ce que la propriété soit respectée.
+	\item Suppression: l'élément le plus petit est la racine. Remplacer la racine par l'élément le plus en bas à droite. Faire descendre (échanger avec l'enfant le plus petit) jusqu'à ce que la propriété soit respectée.
+\end{itemize}
+$\mathcal{O}(\log n)$ pour tout, $\mathcal{O}(1)$ pour voir l'élément le plus petit
+\end{frame}
+
+\begin{frame}
+\frametitle{Min-max heap}
+\begin{itemize}
+	\item Variante du heap binaire, qui maintient à la fois le minimum et le maximum et permet de les retirer en $\mathcal{O}(\log n)$
+	\item Propriété: sur les couche "paires" (niveau 0 (racine), 2, 4, ...) la propriété du min-heap est d'application (tout les noeuds en dessous sont plus grands). Pour les couches impaires, c'est la propriété de max-heap.
+	\item Forcément, le minimum est la racine, et le maximum est le maximum des deux premiers enfants.
+	\item Il faut adapter les règles pour swin/sink les valeurs (une feuille de papier et un petit dessin devraient être suffisant pour retrouver la règle, un peu trop longue à mettre dans ce slide).
+\end{itemize}
+$\mathcal{O}(\log n)$ pour tout, $\mathcal{O}(1)$ pour voir l'élément le plus petit/grand.
+\end{frame}
+\begin{frame}
+\frametitle{Arbres de recherche}
+\begin{itemize}
+	\item Ici: binaire. Facile à adapter dans les autres cas...
+	\item Propriété: \textbf{tout} les noeuds a gauche (enfants, petits-enfants...) sont plus petit que la valeur du noeud courant. Et plus grands à droite.
+	\item Difficile à équilibrer, donc généralement (si on ne précise pas qu'ils sont équilibrés) toutes les opérations sont en $\mathcal{O}(n)$.
+	\item Pour info il existe des implémentations binaires équilibrées, comme les arbres AVL.
+	\item Mais dans ce cours on a vu les arbres 2-3 et red-black (left leaning).
+	\item Ajout: descendre récursivement en voyant de quel coté est ce qu'on cherche.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Arbre 2-3}
+\begin{itemize}
+	\item Arbre contenant soit des noeuds 2 (2 enfants), soit des noeuds 3 (3 enfants).
+	\item Les noeuds 2 fonctionnent comme les arbres de recherche. Les noeuds 3 ont deux valeurs. A gauche plus petit que la première, au milieu entre la première et la deuxième valeur, à droite plus grand que la deuxième valeur
+	\item Les arbres 2-3 sont toujours complets et donc équilibrés.
+	\item Les règles d'ajout sont complexes à énumérer MAIS intuitives. On descend là où la valeur devrait être placée, on l'ajoute au noeud. Si le noeud deviens un noeud 4 (trois valeurs) on doit le diviser en faisant remonter une valeur au noeud supérieur.
+\end{itemize}
+Tout est en $\mathcal{O}(\log n)$ du coup.
+\end{frame}
+
+\begin{frame}
+\frametitle{Red-black tree}
+\begin{itemize}
+	\item Arbre binaire de recherche, avec un twist: certains lien pointant à gauche peuvent être rouges.
+	\item Il y a mapping one to one avec les arbres 2-3 $\rightarrow$ un noeud 2 est encodé normalement, un noeud 3 est encodé par deux noeuds, reliés par un lien rouge.
+	\item Attention; les RB-Tree d'internet sont différents (moins bien) que ceux vu ici. Ils peuvent avoir des liens rouges vers la droite.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hash tables}
+\begin{itemize}
+	\item Principe: hasher l'objet, et le mettre dans un tableau à l'endroit ou pointe son hash.
+	\item Attention à la qualité du hash, aux collisions et à la taille de la table
+\end{itemize}
+Si tout va bien, tout se fait en $\mathcal{O}(1)$ amorti.
+\end{frame}
+
+\begin{frame}
+\frametitle{Hash tables - Separate chaining}
+\begin{itemize}
+	\item Chaque entrée de la table est en fait une liste chainée
+	\item Quand collision, ajout à la liste chainée
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hash tables - Linear probing}
+\begin{itemize}
+	\item Quand collision, aller voir à la case "après"
+	\item Attention à la suppression...
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Rabin-Karp}
+\begin{itemize}
+	\item Sert à trouver un/des mots-clés (de même taille) dans une longue string (ou suite de nombre...)
+	\item Principe: hash roulant
+	\item On calcule en premier le hash de tout les mots-clés à trouver
+	\item On met ces hash dans un dictionnaire (hash -> mot-clé)
+	\item On calcule ensuite le hash roulant au fur et à mesure dans le string original, et on regarde dans le dictionnaire si le hash est présent ou pas.
+	\item Attention aux collisions! Vérifier le string original.
+	\item Si le dictionnaire est un \texttt{HashMap}, on est en $\mathcal{O}(n)$ si pas trop de collisions. Techniquement $\mathcal{O}(nm)$ ($m$=taille du plus grand mot clé).
+\end{itemize}
+Hash pour les $k$ premiers caractères après la position $i$ dans le tableau $x$ et une constante $R$ ($R=31$ est un bon choix):
+$$h_i = x_i R^{k-1} + x_{i+1} R^{k-2} + \ldots + x_{i+k-2} R + x_{i+k-1} = \sum_{j=0}{k-1} x_{i+j} R^{k-1-j}$$
+Pour calculer le hash d'après:
+$$h_{i+1} = (h_i - x_i R^{k-1})\cdot R + x_{i+k}$$
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Union-find}
+\begin{itemize}
+	\item Représente un ensemble d'ensembles
+	\item Chaque ensemble est représenté par un de ses membres, appelé le représentant
+	\item L'opération find permet de trouver le réprésentant d'un élément (autrement dit, le représentant de l'ensemble auquel il appartient)
+	\item L'opération union merge deux ensembles, étant donné deux éléments appartenant à deux ensembles différents.
+	\item Au départ, chaque élément est dans un ensemble tout seul.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Union-find (implémentation)}
+\begin{itemize}
+	\item Ici: weighted quick-union
+	\item Un tableau \texttt{t}, avec un élément par... élément
+	\item Les ensembles forment un arbre. Ce tableau indique, si \texttt{t[i]=j} que le noeud \texttt{i} pointe vers \texttt{j} (et qu'ils sont donc tout les deux dans le même arbre/ensemble).
+	\item La racine de l'arbre est le représentant
+	\item Un second tableau stocke la taille de chaque ensemble
+	\item On unionne toujours le plus petit ensemble sur le plus grand, pour réduire la taille de l'arbre.
+	\item Path compression: après chaque find, on fait pointer le noeud vers son représentant, pour compresser l'arbre. Ca diminue fortement la complexité!
+\end{itemize}
+Tout est en $\mathcal{O}(\log n)$ sans path compression. Bonus (pas dans la matière): $\mathcal{O}(\alpha(n))$ avec path compression. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Petit rappel sur les graphes}
+\begin{itemize}
+	\item Graphe: ensemble de noeuds et d'arêtes reliants ces noeuds. ($G=<V,E>$)
+	\item Graphe \textit{pondéré}: les arêtes ont un poids associé. Mathématiquement, usuellement, on définit ça via une fonction $f: E \rightarrow \mathbb{R}$ qui donne un poids quand on lui donne une arête.
+	\item Graphe \textit{simple}: il y a, entre toute paire de noeuds, au plus une arête. Cela implique que $E \leq \frac{V\cdot(V-1)}{2} \in \mathcal{O}(V^2)$ et donc que $\mathcal{O}(\log E) \subseteq \mathcal{O}(\log V^2) = \mathcal{O}(2 \log V) = \mathcal{O}(\log V)$.
+	\item Graphe \textit{orienté}: les arêtes ont une direction. Généralement, on appelle alors ces arêtes des \textit{arcs}.
+	\item Degré d'un noeud: nombre d'arêtes touchant un noeud.
+	\item Degré entrant (resp. sortant): nombre d'arcs dont le noeud est la destination (resp origine.).
+	\item Somme des degrés des noeuds = $2E$
+	\item Graphe \textit{acyclique}: sans cycle (orienté ou pas, en fonction).
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{BFS}
+\begin{itemize}
+	\item Objectif: visiter tout le graphe en partant d'un/plusieurs noeuds. D'abord visiter tout les noeuds à distance 1, puis distance 2, etc. Les distances sont sur le graphe \textbf{non-pondéré} (on compte juste le nombre d'arêtes).
+	\item On utilise une Queue avec au départ tout les noeuds de départ
+	\item Boucle tant que la queue n'est pas vide:
+		\begin{itemize}
+			\item Pop queue
+			\item Ajouter tout les voisins du noeud pop si pas encore dans la Queue (faire tableau de booléen sur le coté pour savoir)
+			\item Eventuellement maintenant un tableau de distance en même temps
+		\end{itemize}
+\end{itemize}
+$\mathcal{O}(V+E)$
+\end{frame}
+
+\begin{frame}
+\frametitle{DFS (while loop)}
+\begin{itemize}
+	\item Objectif: visiter tout le graphe en partant d'un/plusieurs noeuds. Ordre: plus profond d'abord
+	\item On utilise une Stack avec au départ tout les noeuds de départ
+	\item Boucle tant que la stack n'est pas vide:
+	\begin{itemize}
+		\item Pop stack
+		\item Ajouter tout les voisins du noeud pop si pas encore dans la Queue (faire tableau de booléen sur le coté pour savoir)
+	\end{itemize}
+	\item Même algo que BFS à une ligne près (instantiation du Stack). Pas d'excuses!
+\end{itemize}
+$\mathcal{O}(V+E)$
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{DFS - Récursif}
+L'implémentation récursive est très simple à coder et permet de maintenir l'état de chaque noeud:
+\begin{itemize}
+	\item Non visité (pas encore "vu")
+	\item Ouvert (le noeud a été vu et on est en train de visiter ses enfants/petits-enfants...)
+	\item Fermé (le noeud a été vu et on a fini de visiter ses enfants/petits-enfants/...)
+\end{itemize}
+
+\begin{lstlisting}
+// neis is an adjacency list (LinkedList[])
+// state is an array containing the state of each node, initially set to NOTSEEN
+
+void dfs(int nodeIdx) {
+	state[nodeIdx] = OPEN;
+	
+	// generalement, vous devez inserer le code pour resoudre le probleme ici
+	
+	for(int nei: neis[nodeIdx]) {
+		if(state[nei] == NOTSEEN)
+			dfs(nei);
+	}
+	state[nodeIdx] = CLOSED;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Trouver un cycle}
+En utilisant le DFS récursif; si on visite un noeud déjà OPEN, c'est que nous sommes en train de visiter ses enfants/petits-enfants/... sauf qu'on le retrouve de nouveau, et donc nous sommes dans un cycle.
+
+Attention, ce n'est pas vrai avec CLOSED; dans un graphe dirigé, cela peut arriver (faites un dessin!).
+
+\begin{lstlisting}
+bool hasCycle(int nodeIdx) {
+	state[nodeIdx] = OPEN;
+
+	for(int nei: neis[nodeIdx]) {
+		if(state[nei] == UNSEEN)
+			if(dfs(nei))
+				return true;
+		if(state[nei] == OPEN)
+			return true;
+	}
+	state[nodeIdx] = CLOSED;
+	return false;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Savoir si un graphe est biparti}
+\begin{itemize}
+	\item Graphe biparti: le graphe peut être séparé en deux ensembles de noeuds, tel qu'il n'y a pas d'arête à l'intérieur d'un ensemble.
+	\item Colorer le graphe alternativement avec deux couleurs et un DFS. Si un noeud se retrouver à être déjà coloré de la mauvaise couleur, il n'est pas biparti.
+\end{itemize}
+$\mathcal{O}(V+E)$
+\end{frame}
+
+\begin{frame}
+\frametitle{Toposort}
+\begin{itemize}
+	\item Etant donné un graphe dirigé acyclique, trouver un ordre des noeuds tel que tout les edges vont "vers la droite" (pointent vers des noeuds situés après dans l'ordre).
+	\item Algorithme: tant qu'il y a des noeuds sans arêtes entrantes, les ajouter à l'ordre. Retirer les arêtes sortantes de ces noeuds du graphe. Répeter.
+	\item Ca permet de trouver les cycles aussi. Mais un DFS sait aussi le faire ça ;-)
+\end{itemize}
+$\mathcal{O}(V+E)$
+\end{frame}
+
+\begin{frame}
+\frametitle{Arbre sous-tendant de poids minimal}
+\begin{itemize}
+	\item Arbre: graphe connexe acyclique. $n$ noeuds $\Rightarrow$ $n-1$ arêtes
+	\item sous-tendant: par rapport à un autre graphe, l'arbre en utilise tout les noeuds et un subset des arêtes.
+	\item de poids minimal: il n'existe pas d'arbre sous-tendant avec un poids (somme des poids des arêtes) plus petit
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Prim}
+\begin{itemize}
+	\item Calcul d'un arbre sous-tendant
+	\item On prend un noeud au hasard
+	\item On ajoute toutes ses arêtes dans une PQ
+	\item On retire l'arête la plus petite
+	\item Si elle pointe vers un noeud pas encore dans l'arbre, on l'y ajoute (et le noeud aussi), et on ajoute les arêtes dudit noeud à la PQ
+	\item Repeat
+\end{itemize}
+$\mathcal{O}(E \log V)$
+\end{frame}
+
+\begin{frame}
+\frametitle{Kruskal}
+\begin{itemize}
+	\item Calcul d'un arbre sous-tendant
+	\item Partir d'un graphe sans les arêtes mais avec tout les noeuds
+	\item Trier toute les arêtes par poids
+	\item Pour chaque arête:
+	\item Si mettre l'arête ne crée pas de cycle (à vérifier avec un UF), l'ajouter au graphe
+	\item S'arrêter après $n-1$ arêtes ajoutés.
+\end{itemize}
+$\mathcal{O}(E \log V)$
+\end{frame}
+
+\begin{frame}
+\frametitle{Dijkstra}
+\begin{itemize}
+	\item Calcul de tout les chemins les plus courts (au sens "somme des poids des arêtes du chemin") partant d'un noeud donné, dans un graphe \textbf{pondéré}.
+	\item Maintien d'un tableau de distance vers tout les noeuds, initialement à l'infini
+	\item La distance vers le noeud de départ est 0
+	\item Une PQ maintien les noeuds vus mais pas encore visités
+	\item Mettre le noeud original et sa distance actuelle dans la PQ
+	\item Tant que la PQ n'est pas vide:
+	\begin{itemize}
+		\item Pop un noeud (et le poids associé)
+		\item Si le poids associé n'est pas bon, ignore. Sinon...
+		\item Regarder tout les voisins du noeud. Si la nouvelle distance est plus courte, mettre à jour le tableau distance et ajouter noeud+distance à la PQ.
+	\end{itemize}
+	\item Dès qu'un noeud est pop par la PQ, la distance min est connue.
+	\item Attention, pas de support des poids négatif du coup...
+\end{itemize}
+$\mathcal{O}((V+E)\log V)$
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Bellman-ford}
+\begin{itemize}
+	\item Calcul de tout les chemins les plus courts partant d'un noeud donné.
+	\item L'idée est de calculer tout d'abord tout les chemins de taille 1 (d'une seule arête), puis tout les chemins de taille 2, ...
+	\item L'implémentation fait 4 lignes.
+	\item Support pour les poids négatif, mais pas les cycle négatifs!
+\end{itemize}
+
+\begin{lstlisting}
+fonction Bellman_Ford(G, s) 
+	pour chaque sommet u du graphe
+		d[u] = +inf
+	d[s] = 0
+
+	pour k = 1 jusqu'a n-1 faire
+		pour chaque arc (u, t) du graphe faire
+			d[t] := min(d[t], d[u] + poids(u, t))
+	
+	retourner d
+\end{lstlisting}
+$\mathcal{O}(V^3)$
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Chemin le plus long}
+\begin{itemize}
+	\item Il est conjecturé qu'il n'existe pas d'algorithme en temps polynomial pour trouver le chemin le plus long dans un graphe quelconque. (plus d'information dans le cours de Calculabilité (Q6) et d'Algorithmique Avandée pour l'Optimisation (master)).
+	\item Si le graphe est un DAG (graphe dirigé acyclique) alors il existe un algorithme polynomial: prendre l'opposé des poids des arêtes, et utiliser Bellman-ford.
+	\item Cela marche car il y a aura des poids négatifs mais pas de cycle négatifs vu que le graphe est acyclique.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Retenir les chemins dans les algorithmes de recherche de chemin}
+\begin{itemize}
+	\item Quand on fait un BFS/DFS/Dijkstra/Bellman-Ford, on a parfois (/souvent) besoin de retenir le chemin en plus de la distance
+	\item La technique est simple: on va maintenir un tableau disant "d'où on vient" et construire le chemin à l'envers.
+	\item Créer un tableau supplémentaire. Taille $V$, init à null.
+	\item Quand vous "trouvez un meilleur chemin" (autrement dit:
+	\begin{itemize}
+		\item DFS: quand vous ajoutez à la Stack/faites l'appel récursif
+		\item BFS: quand vous ajoutez à la Queue
+		\item Dijkstra/Bellman-ford: quand vous mettez à jour l'array distance
+	\end{itemize}
+	)
+	vous mettez à jour l'entrée du noeud de destination pour la faire pointer vers le noeud courant.
+	\item Vous pouvez ensuite reconstruire le chemin avec une simple boucle while et une \texttt{LinkedList} par exemple.
+\end{itemize}
+\end{frame}
+
+\section{Tips \& tricks}
+
+\begin{frame}[fragile]
+\frametitle{Itérer sur des collections}
+{\color{red} Je ne veux JAMAIS voir ceci:}
+\begin{lstlisting}
+List<String> x = ...;
+for(int i = 0; i < x.size(); i++) {
+	String elem = x.get(i);
+	//...
+}
+\end{lstlisting}
+{\color{red} C'est du $\mathcal{O}(n^2)$!}
+
+{\color{blue} Utilisez svp les foreach:}
+\begin{lstlisting}
+for(String elem: x) {
+	//...
+}
+\end{lstlisting}
+
+{\color{blue} Ou un itérateur:}
+\begin{lstlisting}
+Iterator<String> itr = x.iterator();
+while(itr.hasNext()) {
+	String elem = ite.next();
+	//...
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Itérer sur des collections (2)}
+Pour les dictionnaires (\texttt{HashMap}, \texttt{TreeMap}), trois possibilités raisonables:
+\begin{lstlisting}
+HashMap<X, Y> hasmap = ...;
+for(Map.Entry<X, Y> pair: hashmap.entrySet()) {
+	X cle = pair.getKey();
+	Y valeur = pair.getValue();
+	// ...
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+for(X key: hashmap.keySet()) {
+	Y valeur = hashmap.get(key);
+	// ...
+}
+\end{lstlisting}
+
+Ou avec un itérator (sur \texttt{hashmap.entrySet().iterator()} ou \texttt{hashmap.keySet().iterator()}).
+
+Si vous utiliser un TreeMap, c'est donné de manière triée! Attention que c'est toujours du $\mathcal{O}(n)$ sauf dans le second cas avec la TreeMap, où là c'est $\mathcal{O}(n \log n)$.
+\end{frame}
+
+\end{document}
