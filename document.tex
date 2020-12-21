@@ -24,24 +24,24 @@
 \end{frame}
 
 \begin{frame}{Un avertissement}
-Ces slides sont un résumé extrèmement incomplet du cours, et ne font aucunement figure d'autorité. 
+Ces slides sont un résumé extrêmement incomplet du cours, et ne font aucunement figure d'autorités. 
 
 \begin{center}
-	\color{red} \textbf{Matière du cours = chapitres du livres demandés + exercices TP + exercices INGInious}
+	\color{red} \textbf{Matière du cours = chapitres du livre demandés + exercices TP + exercices INGInious}
 \end{center}
 
 Utilisez ces slides pour vous rafraichir rapidement la mémoire, ou comme moyen mnémotechnique.
 
-Personnelement, quand je dois comme vous apprendre un algorithme, je le lis, ainsi que ses propriétés, je le code au moins une fois sans référence, je vérifie, puis je me fais le genre de petit résumé tel que dans ces slides que je retiens. Le petit résumé permet de reconstruire le reste... si je l'ai bien étudié (le reste) au départ!
+Personnellement, quand je dois comme vous apprendre un algorithme, je le lis, ainsi que ses propriétés, je le code au moins une fois sans référence, je vérifie, puis je me fais le genre de petit résumé tel que dans ces slides que je retiens. Le petit résumé permet de reconstruire le reste... si je l'ai bien étudié (le reste) au départ!
 
-\color{red} Ces slides ne recouvrent pas l'entiéreté de la matière. 
+\color{red} Ces slides ne recouvrent pas l'entièreté de la matière. 
 
 \end{frame}
 \section{Les implémentations des TADs vus existantes en Java}
 
 \begin{frame}{Les implémentations des TADs vus existantes en Java}
-Ces slides passent quelques minutes sur les implémentations des différents TADs vus au cours. Ils mèlent TADs "purs" (sans implémentation) avec des TADs "pré-implémentés" par Java.
-A vous de savoir faire la différence entre un TAD et une implémentation ;-)
+Ces slides passent quelques minutes sur les implémentations des différents TADs vus au cours. Ils mêlent TADs "purs" (sans implémentation) avec des TADs "pré implémentés" par Java.
+À vous de savoir faire la différence entre un TAD et une implémentation ;-)
 
 Quand vous voyez une complexité en rouge, et que vous comptez utiliser cette méthode dans une structure de donnée, ça veut probablement dire que vous avez choisi la mauvaise structure de donnée.
 
@@ -63,7 +63,7 @@ Vous n'êtes pas à l'abri d'une erreur dans ces slides ;-)
 \begin{tabular}{lll}
 	\multicolumn{3}{c}{\textbf{Méthodes}} \\
 	\textit{Nom} & \textit{Java} & \textit{Complexité} \\
-	Accès à l'élement \texttt{i} & \texttt{tableau[i]} & $\Theta(1)$\\
+	Accès à l'élément \texttt{i} & \texttt{tableau[i]} & $\Theta(1)$\\
 	Assignation de \texttt{x} à l'élem \texttt{i} & \texttt{tableau[i] = x} & $\Theta(1)$\\
 \end{tabular}
 \end{frame}
@@ -80,13 +80,13 @@ Vous n'êtes pas à l'abri d'une erreur dans ces slides ;-)
 \begin{tabular}{lll}
 	\multicolumn{3}{c}{\textbf{Méthodes} sur un objet \texttt{o} de taille $n$} \\
 	\textit{Nom} & \textit{Java} & \textit{Complexité} \\
-	Accès à l'élement \texttt{i} & \texttt{o.get(i)} & $\Theta(1)$\\
+	Accès à l'élément \texttt{i} & \texttt{o.get(i)} & $\Theta(1)$\\
 	Assignation de \texttt{x} à l'élem \texttt{i} & \texttt{o.set(i, x)} & $\Theta(1)$\\
 	Ajouter à la fin & \texttt{o.add(x)} & $\Theta(1)$ \color{orange}amorti\\
 	Supprimer à la fin & \texttt{o.remove(n-1)} & $\Theta(1)$ \color{orange}amorti\\
 	Ajouter n'importe où & \texttt{o.add(i, x)} & $\color{red}\mathcal{O}(n)$\\
 	Supprimer n'importe où & \texttt{o.remove(i)} & $\color{red}\mathcal{O}(n)$\\
-	Contiens \texttt{x} ? & \texttt{o.contains(x)} & $\color{red}\mathcal{O}(n)$\\
+	Contient \texttt{x} ? & \texttt{o.contains(x)} & $\color{red}\mathcal{O}(n)$\\
 \end{tabular}
 \end{frame}
 
@@ -108,11 +108,11 @@ Vous n'êtes pas à l'abri d'une erreur dans ces slides ;-)
 	Accès au dernier élément & \texttt{o.getLast()} & $\Theta(1)$\\
 	Ajouter à la fin & \texttt{o.addLast(x)} & $\Theta(1)$\\
 	Supprimer à la fin & \texttt{o.removeLast()} & $\Theta(1)$\\
-	Accès à l'élement \texttt{i} & \texttt{o.get(i)} & $\color{red}\mathcal{O}(n)$\\
+	Accès à l'élément \texttt{i} & \texttt{o.get(i)} & $\color{red}\mathcal{O}(n)$\\
 	Assignation de \texttt{x} à l'élem \texttt{i} & \texttt{o.set(i, x)} & $\color{red}\mathcal{O}(n)$\\
 	Ajouter n'importe où & \texttt{o.add(i, x)} & $\color{red}\mathcal{O}(n)$\\
 	Supprimer n'importe où & \texttt{o.remove(i)} & $\color{red}\mathcal{O}(n)$\\
-	Contiens \texttt{x} ? & \texttt{o.contains(x)} & $\color{red}\mathcal{O}(n)$\\
+	Contient \texttt{x} ? & \texttt{o.contains(x)} & $\color{red}\mathcal{O}(n)$\\
 \end{tabular}
 \end{frame}
 
@@ -422,7 +422,7 @@ $\mathcal{O}(\log n)$
 \frametitle{Selection sort}
 Dans un array non-trié:
 \begin{itemize}
-	\item Trouver l'élement le plus petit pas encore trié
+	\item Trouver l'élément le plus petit pas encore trié
 	\item Le mettre au bon endroit
 	\item Répeter
 \end{itemize}
@@ -466,7 +466,7 @@ $\mathcal{O}(n\log n)$ moyen, $\mathcal{O}(n^2)$ en général
 \begin{itemize}
 	\item Trouve le $k$ième plus grand élément dans un tableau non trié
 	\item Choisir un pivot
-	\item Mettre les éléments plus petit que le pivot à gauche du pivot, les autres à droite
+	\item Mettre les éléments plus petits que le pivot à gauche du pivot, les autres à droite
 	\item Si le pivot se retrouve à la position $k$, stop (c'est l'élément recherché).
 	\item Si pas, si $k$ < position du pivot, appeler récursivement uniquement à gauche, et à droite sinon.
 \end{itemize}
@@ -488,7 +488,7 @@ $\mathcal{O}(n\log n)$
 	\item Arbre binaire complet (sauf éventuellement la dernière couche, qui est complète "a gauche")
 	\item Propriété: les enfants d'un noeud sont plus grands que lui (pour un min-heap)
 	\item Implémentation via un tableau. Les enfants du noeud $i$ sont en position $2i$ et $2i+1$. Attention, par simplicité on commence la numérotation à 1.
-	\item Ajout: mettre dans la première position libre en bas a gauche. Faire remonter (échanger avec le parent) jusqu'à ce que la propriété soit respectée.
+	\item Ajout: mettre dans la première position libre en bas à gauche. Faire remonter (échanger avec le parent) jusqu'à ce que la propriété soit respectée.
 	\item Suppression: l'élément le plus petit est la racine. Remplacer la racine par l'élément le plus en bas à droite. Faire descendre (échanger avec l'enfant le plus petit) jusqu'à ce que la propriété soit respectée.
 \end{itemize}
 $\mathcal{O}(\log n)$ pour tout, $\mathcal{O}(1)$ pour voir l'élément le plus petit
@@ -498,9 +498,9 @@ $\mathcal{O}(\log n)$ pour tout, $\mathcal{O}(1)$ pour voir l'élément le plus 
 \frametitle{Min-max heap}
 \begin{itemize}
 	\item Variante du heap binaire, qui maintient à la fois le minimum et le maximum et permet de les retirer en $\mathcal{O}(\log n)$
-	\item Propriété: sur les couche "paires" (niveau 0 (racine), 2, 4, ...) la propriété du min-heap est d'application (tout les noeuds en dessous sont plus grands). Pour les couches impaires, c'est la propriété de max-heap.
+	\item Propriété: sur les couches "paires" (niveau 0 (racine), 2, 4, ...) la propriété du min-heap est d'application (tous les noeuds en dessous sont plus grands). Pour les couches impaires, c'est la propriété de max-heap.
 	\item Forcément, le minimum est la racine, et le maximum est le maximum des deux premiers enfants.
-	\item Il faut adapter les règles pour swin/sink les valeurs (une feuille de papier et un petit dessin devraient être suffisant pour retrouver la règle, un peu trop longue à mettre dans ce slide).
+	\item Il faut adapter les règles pour swim/sink les valeurs (une feuille de papier et un petit dessin devraient être suffisants pour retrouver la règle, un peu trop longue à mettre dans ce slide).
 \end{itemize}
 $\mathcal{O}(\log n)$ pour tout, $\mathcal{O}(1)$ pour voir l'élément le plus petit/grand.
 \end{frame}
@@ -508,11 +508,11 @@ $\mathcal{O}(\log n)$ pour tout, $\mathcal{O}(1)$ pour voir l'élément le plus 
 \frametitle{Arbres de recherche}
 \begin{itemize}
 	\item Ici: binaire. Facile à adapter dans les autres cas...
-	\item Propriété: \textbf{tout} les noeuds a gauche (enfants, petits-enfants...) sont plus petit que la valeur du noeud courant. Et plus grands à droite.
-	\item Difficile à équilibrer, donc généralement (si on ne précise pas qu'ils sont équilibrés) toutes les opérations sont en $\mathcal{O}(n)$.
+	\item Propriété: \textbf{tous} les noeuds à gauche (enfants, petits-enfants...) sont plus petits que la valeur du noeud courant. Et plus grands à droite.
+	\item Difficiles à équilibrer, donc généralement (si on ne précise pas qu'ils sont équilibrés) toutes les opérations sont en $\mathcal{O}(n)$.
 	\item Pour info il existe des implémentations binaires équilibrées, comme les arbres AVL.
 	\item Mais dans ce cours on a vu les arbres 2-3 et red-black (left leaning).
-	\item Ajout: descendre récursivement en voyant de quel coté est ce qu'on cherche.
+	\item Ajout: descendre récursivement en voyant de quel côté est ce qu'on cherche.
 \end{itemize}
 \end{frame}
 
@@ -520,9 +520,9 @@ $\mathcal{O}(\log n)$ pour tout, $\mathcal{O}(1)$ pour voir l'élément le plus 
 \frametitle{Arbre 2-3}
 \begin{itemize}
 	\item Arbre contenant soit des noeuds 2 (2 enfants), soit des noeuds 3 (3 enfants).
-	\item Les noeuds 2 fonctionnent comme les arbres de recherche. Les noeuds 3 ont deux valeurs. A gauche plus petit que la première, au milieu entre la première et la deuxième valeur, à droite plus grand que la deuxième valeur
+	\item Les noeuds 2 fonctionnent comme les arbres de recherche. Les noeuds 3 ont deux valeurs. À gauche plus petit que la première, au milieu entre la première et la deuxième valeur, à droite plus grand que la deuxième valeur
 	\item Les arbres 2-3 sont toujours complets et donc équilibrés.
-	\item Les règles d'ajout sont complexes à énumérer MAIS intuitives. On descend là où la valeur devrait être placée, on l'ajoute au noeud. Si le noeud deviens un noeud 4 (trois valeurs) on doit le diviser en faisant remonter une valeur au noeud supérieur.
+	\item Les règles d'ajout sont complexes à énumérer, MAIS intuitives. On descend là où la valeur devrait être placée, on l'ajoute au noeud. Si le noeud devient un noeud 4 (trois valeurs) on doit le diviser en faisant remonter une valeur au noeud supérieur.
 \end{itemize}
 Tout est en $\mathcal{O}(\log n)$ du coup.
 \end{frame}
@@ -530,9 +530,9 @@ Tout est en $\mathcal{O}(\log n)$ du coup.
 \begin{frame}
 \frametitle{Red-black tree}
 \begin{itemize}
-	\item Arbre binaire de recherche, avec un twist: certains lien pointant à gauche peuvent être rouges.
+	\item Arbre binaire de recherche, avec un twist: certains liens pointant à gauche peuvent être rouges.
 	\item Il y a mapping one to one avec les arbres 2-3 $\rightarrow$ un noeud 2 est encodé normalement, un noeud 3 est encodé par deux noeuds, reliés par un lien rouge.
-	\item Attention; les RB-Tree d'internet sont différents (moins bien) que ceux vu ici. Ils peuvent avoir des liens rouges vers la droite.
+	\item Attention; les RB-Tree d'internet sont différents (moins bien) que ceux vus ici. Ils peuvent avoir des liens rouges vers la droite.
 \end{itemize}
 \end{frame}
 
@@ -595,7 +595,7 @@ $$h_{i+1} = (h_i - x_i R^{k-1})\cdot R + x_{i+k}$$
 \begin{itemize}
 	\item Ici: weighted quick-union
 	\item Un tableau \texttt{t}, avec un élément par... élément
-	\item Les ensembles forment un arbre. Ce tableau indique, si \texttt{t[i]=j} que le noeud \texttt{i} pointe vers \texttt{j} (et qu'ils sont donc tout les deux dans le même arbre/ensemble).
+	\item Les ensembles forment un arbre. Ce tableau indique, si \texttt{t[i]=j} que le noeud \texttt{i} pointe vers \texttt{j} (et qu'ils sont donc tous les deux dans le même arbre/ensemble).
 	\item La racine de l'arbre est le représentant
 	\item Un second tableau stocke la taille de chaque ensemble
 	\item On unionne toujours le plus petit ensemble sur le plus grand, pour réduire la taille de l'arbre.
@@ -607,7 +607,7 @@ Tout est en $\mathcal{O}(\log n)$ sans path compression. Bonus (pas dans la mati
 \begin{frame}
 \frametitle{Petit rappel sur les graphes}
 \begin{itemize}
-	\item Graphe: ensemble de noeuds et d'arêtes reliants ces noeuds. ($G=<V,E>$)
+	\item Graphe: ensemble de noeuds et d'arêtes reliant ces noeuds. ($G=<V,E>$)
 	\item Graphe \textit{pondéré}: les arêtes ont un poids associé. Mathématiquement, usuellement, on définit ça via une fonction $f: E \rightarrow \mathbb{R}$ qui donne un poids quand on lui donne une arête.
 	\item Graphe \textit{simple}: il y a, entre toute paire de noeuds, au plus une arête. Cela implique que $E \leq \frac{V\cdot(V-1)}{2} \in \mathcal{O}(V^2)$ et donc que $\mathcal{O}(\log E) \subseteq \mathcal{O}(\log V^2) = \mathcal{O}(2 \log V) = \mathcal{O}(\log V)$.
 	\item Graphe \textit{orienté}: les arêtes ont une direction. Généralement, on appelle alors ces arêtes des \textit{arcs}.
@@ -621,12 +621,12 @@ Tout est en $\mathcal{O}(\log n)$ sans path compression. Bonus (pas dans la mati
 \begin{frame}
 \frametitle{BFS}
 \begin{itemize}
-	\item Objectif: visiter tout le graphe en partant d'un/plusieurs noeuds. D'abord visiter tout les noeuds à distance 1, puis distance 2, etc. Les distances sont sur le graphe \textbf{non-pondéré} (on compte juste le nombre d'arêtes).
+	\item Objectif: visiter tout le graphe en partant d'un/plusieurs noeuds. D'abord visiter tous les noeuds à distance 1, puis distance 2, etc. Les distances sont sur le graphe \textbf{non-pondéré} (on compte juste le nombre d'arêtes).
 	\item On utilise une Queue avec au départ tout les noeuds de départ
 	\item Boucle tant que la queue n'est pas vide:
 		\begin{itemize}
 			\item Pop queue
-			\item Ajouter tout les voisins du noeud pop si pas encore dans la Queue (faire tableau de booléen sur le coté pour savoir)
+			\item Ajouter tous les voisins du noeud pop si pas encore dans la Queue (faire tableau de booléen sur le côté pour savoir)
 			\item Eventuellement maintenant un tableau de distance en même temps
 		\end{itemize}
 \end{itemize}
@@ -641,7 +641,7 @@ $\mathcal{O}(V+E)$
 	\item Boucle tant que la stack n'est pas vide:
 	\begin{itemize}
 		\item Pop stack
-		\item Ajouter tout les voisins du noeud pop si pas encore dans la Queue (faire tableau de booléen sur le coté pour savoir)
+		\item Ajouter tous les voisins du noeud pop si pas encore dans la Queue (faire tableau de booléen sur le côté pour savoir)
 	\end{itemize}
 	\item Même algo que BFS à une ligne près (instantiation du Stack). Pas d'excuses!
 \end{itemize}
@@ -710,7 +710,7 @@ $\mathcal{O}(V+E)$
 \begin{frame}
 \frametitle{Toposort}
 \begin{itemize}
-	\item Etant donné un graphe dirigé acyclique, trouver un ordre des noeuds tel que tout les edges vont "vers la droite" (pointent vers des noeuds situés après dans l'ordre).
+	\item Etant donné un graphe dirigé acyclique, trouver un ordre des noeuds tel que toutes les edges vont "vers la droite" (pointent vers des noeuds situés après dans l'ordre).
 	\item Algorithme: tant qu'il y a des noeuds sans arêtes entrantes, les ajouter à l'ordre. Retirer les arêtes sortantes de ces noeuds du graphe. Répeter.
 	\item Ca permet de trouver les cycles aussi. Mais un DFS sait aussi le faire ça ;-)
 \end{itemize}
@@ -721,7 +721,7 @@ $\mathcal{O}(V+E)$
 \frametitle{Arbre sous-tendant de poids minimal}
 \begin{itemize}
 	\item Arbre: graphe connexe acyclique. $n$ noeuds $\Rightarrow$ $n-1$ arêtes
-	\item sous-tendant: par rapport à un autre graphe, l'arbre en utilise tout les noeuds et un subset des arêtes.
+	\item sous-tendant: par rapport à un autre graphe, l'arbre en utilise tous les noeuds et un subset des arêtes.
 	\item de poids minimal: il n'existe pas d'arbre sous-tendant avec un poids (somme des poids des arêtes) plus petit
 \end{itemize}
 \end{frame}
@@ -743,11 +743,11 @@ $\mathcal{O}(E \log V)$
 \frametitle{Kruskal}
 \begin{itemize}
 	\item Calcul d'un arbre sous-tendant
-	\item Partir d'un graphe sans les arêtes mais avec tout les noeuds
+	\item Partir d'un graphe sans les arêtes, mais avec tout les noeuds
 	\item Trier toute les arêtes par poids
 	\item Pour chaque arête:
 	\item Si mettre l'arête ne crée pas de cycle (à vérifier avec un UF), l'ajouter au graphe
-	\item S'arrêter après $n-1$ arêtes ajoutés.
+	\item S'arrêter après $n-1$ arêtes ajoutées.
 \end{itemize}
 $\mathcal{O}(E \log V)$
 \end{frame}
@@ -755,16 +755,16 @@ $\mathcal{O}(E \log V)$
 \begin{frame}
 \frametitle{Dijkstra}
 \begin{itemize}
-	\item Calcul de tout les chemins les plus courts (au sens "somme des poids des arêtes du chemin") partant d'un noeud donné, dans un graphe \textbf{pondéré}.
+	\item Calcul de tous les chemins les plus courts (au sens "somme des poids des arêtes du chemin") partant d'un noeud donné, dans un graphe \textbf{pondéré}.
 	\item Maintien d'un tableau de distance vers tout les noeuds, initialement à l'infini
 	\item La distance vers le noeud de départ est 0
-	\item Une PQ maintien les noeuds vus mais pas encore visités
+	\item Une PQ maintien les noeuds vus, mais pas encore visités
 	\item Mettre le noeud original et sa distance actuelle dans la PQ
 	\item Tant que la PQ n'est pas vide:
 	\begin{itemize}
 		\item Pop un noeud (et le poids associé)
 		\item Si le poids associé n'est pas bon, ignore. Sinon...
-		\item Regarder tout les voisins du noeud. Si la nouvelle distance est plus courte, mettre à jour le tableau distance et ajouter noeud+distance à la PQ.
+		\item Regarder tous les voisins du noeud. Si la nouvelle distance est plus courte, mettre à jour le tableau distance et ajouter noeud+distance à la PQ.
 	\end{itemize}
 	\item Dès qu'un noeud est pop par la PQ, la distance min est connue.
 	\item Attention, pas de support des poids négatif du coup...
@@ -776,7 +776,7 @@ $\mathcal{O}((V+E)\log V)$
 \frametitle{Bellman-ford}
 \begin{itemize}
 	\item Calcul de tout les chemins les plus courts partant d'un noeud donné.
-	\item L'idée est de calculer tout d'abord tout les chemins de taille 1 (d'une seule arête), puis tout les chemins de taille 2, ...
+	\item L'idée est de calculer tout d'abord tous les chemins de taille 1 (d'une seule arête), puis tous les chemins de taille 2, ...
 	\item L'implémentation fait 4 lignes.
 	\item Support pour les poids négatif, mais pas les cycle négatifs!
 \end{itemize}
@@ -801,7 +801,7 @@ $\mathcal{O}(V^3)$
 \begin{itemize}
 	\item Il est conjecturé qu'il n'existe pas d'algorithme en temps polynomial pour trouver le chemin le plus long dans un graphe quelconque. (plus d'information dans le cours de Calculabilité (Q6) et d'Algorithmique Avandée pour l'Optimisation (master)).
 	\item Si le graphe est un DAG (graphe dirigé acyclique) alors il existe un algorithme polynomial: prendre l'opposé des poids des arêtes, et utiliser Bellman-ford.
-	\item Cela marche car il y a aura des poids négatifs mais pas de cycle négatifs vu que le graphe est acyclique.
+	\item Cela marche car il y a aura des poids négatifs, mais pas de cycles négatifs vu que le graphe est acyclique.
 \end{itemize}
 \end{frame}
 
@@ -856,7 +856,7 @@ while(itr.hasNext()) {
 
 \begin{frame}[fragile]
 \frametitle{Itérer sur des collections (2)}
-Pour les dictionnaires (\texttt{HashMap}, \texttt{TreeMap}), trois possibilités raisonables:
+Pour les dictionnaires (\texttt{HashMap}, \texttt{TreeMap}), trois possibilités raisonnables:
 \begin{lstlisting}
 HashMap<X, Y> hasmap = ...;
 for(Map.Entry<X, Y> pair: hashmap.entrySet()) {
@@ -875,7 +875,7 @@ for(X key: hashmap.keySet()) {
 
 Ou avec un itérator (sur \texttt{hashmap.entrySet().iterator()} ou \texttt{hashmap.keySet().iterator()}).
 
-Si vous utiliser un TreeMap, c'est donné de manière triée! Attention que c'est toujours du $\mathcal{O}(n)$ sauf dans le second cas avec la TreeMap, où là c'est $\mathcal{O}(n \log n)$.
+Si vous utilisez un TreeMap, c'est donné de manière triée! Attention que c'est toujours du $\mathcal{O}(n)$ sauf dans le second cas avec la TreeMap, où là c'est $\mathcal{O}(n \log n)$.
 \end{frame}
 
 \end{document}
