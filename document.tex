@@ -687,7 +687,7 @@ bool hasCycle(int nodeIdx) {
 
 	for(int nei: neis[nodeIdx]) {
 		if(state[nei] == UNSEEN)
-			if(dfs(nei))
+			if(hasCycle(nei))
 				return true;
 		if(state[nei] == OPEN)
 			return true;
