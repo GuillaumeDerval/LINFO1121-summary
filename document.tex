@@ -55,7 +55,7 @@ Vous n'êtes pas à l'abri d'une erreur dans ces slides ;-)
 \centering
 \begin{tabular}{lll}
 	Utilité & \multicolumn{2}{l}{Stockage d'un nombre connu d'éléments}\\
-	Contrainte & \multicolumn{2}{l}{Nombre d'élément fixé}\\
+	Contrainte & \multicolumn{2}{l}{Nombre d'éléments fixés}\\
 	Instanciation & \multicolumn{2}{l}{\texttt{new Type[taille]} (ex: \texttt{new int[8]})}\\
 \end{tabular}\\
 \vspace{0.5cm}
@@ -258,7 +258,7 @@ Vous n'êtes pas à l'abri d'une erreur dans ces slides ;-)
 	Contient ? & \texttt{o.contains(x)} & $\mathcal{O}(1)$ \color{orange} amorti\\
 \end{tabular}\\
 \vspace{0.5cm}
-\color{blue} Sous contrainte que les hash sont bien répartis!
+\color{blue} Sous contrainte que les hash sont bien répartis !
 \end{frame}
 
 \begin{frame}
@@ -286,7 +286,7 @@ Vous n'êtes pas à l'abri d'une erreur dans ces slides ;-)
 
 \color{blue} Voir slide plus loin pour un tips pour itérer sur les Maps et notamment les TreeMaps.
 
-\color{red} Même s'il existe des méthodes pour chercher des valeur (\texttt{containsValue}, ...), elles sont en $\mathcal{O}(n)$ généralement.
+\color{red} Même s'il existe des méthodes pour chercher des valeurs (\texttt{containsValue}, ...), elles sont en $\mathcal{O}(n)$ généralement.
 \end{frame}
 
 \begin{frame}
@@ -312,11 +312,11 @@ Vous n'êtes pas à l'abri d'une erreur dans ces slides ;-)
 	Contient clé ? & \texttt{o.containsKey(x)} & $\mathcal{O}(1)$ \color{orange} amorti\\
 \end{tabular}\\
 \vspace{0.5cm}
-\color{blue} Sous contrainte que les hash sont bien répartis!
+\color{blue} Sous contrainte que les hash sont bien répartis !
 
 \color{blue} Voir slide plus loin pour un tips pour itérer sur les Maps et notamment les TreeMaps.
 
-\color{red} Même s'il existe des méthodes pour chercher des valeur (\texttt{containsValue}, ...), elles sont en $\mathcal{O}(n)$ généralement.
+\color{red} Même s'il existe des méthodes pour chercher des valeurs (\texttt{containsValue}, ...), elles sont en $\mathcal{O}(n)$ généralement.
 \end{frame}
 
 \begin{frame}
@@ -326,7 +326,7 @@ Vous n'êtes pas à l'abri d'une erreur dans ces slides ;-)
 	Utilité & Queue, mais avec des priorités.\\
 	Instanciation & \texttt{new PriorityQueue<Type>}\\
 	C'est quoi? & Un heap binaire basée sur un tableau\\
-	& \color{red} Les valeur doivent être comparables
+	& \color{red} Les valeurs doivent être comparables
 	
 \end{tabular}\\
 \vspace{0.5cm}
@@ -413,7 +413,7 @@ $\mathcal{O}(\log n)$
 \begin{frame}
 \frametitle{Propriétés des tris}
 \begin{itemize}
-	\item En-place: un tri en place utilise un quantité constante de mémoire supplémentaire (complexité en mémoire \textbf{supplémentaire} $\mathcal{O}(1)$).
+	\item En-place: un tri en place utilise une quantité constante de mémoire supplémentaire (complexité en mémoire \textbf{supplémentaire} $\mathcal{O}(1)$).
 	\item Stable: Deux valeurs égales du point de vue du tri restent dans le même ordre après le tri.
 \end{itemize}
 \end{frame}
@@ -564,9 +564,9 @@ Si tout va bien, tout se fait en $\mathcal{O}(1)$ amorti.
 \begin{frame}
 \frametitle{Rabin-Karp}
 \begin{itemize}
-	\item Sert à trouver un/des mots-clés (de même taille) dans une longue string (ou suite de nombre...)
+	\item Sert à trouver un/des mots-clés (de même taille) dans une longue string (ou suite de nombres...)
 	\item Principe: hash roulant
-	\item On calcule en premier le hash de tout les mots-clés à trouver
+	\item On calcule en premier le hash de tous les mots-clés à trouver
 	\item On met ces hash dans un dictionnaire (hash -> mot-clé)
 	\item On calcule ensuite le hash roulant au fur et à mesure dans le string original, et on regarde dans le dictionnaire si le hash est présent ou pas.
 	\item Attention aux collisions! Vérifier le string original.
@@ -622,7 +622,7 @@ Tout est en $\mathcal{O}(\log n)$ sans path compression. Bonus (pas dans la mati
 \frametitle{BFS}
 \begin{itemize}
 	\item Objectif: visiter tout le graphe en partant d'un/plusieurs noeuds. D'abord visiter tous les noeuds à distance 1, puis distance 2, etc. Les distances sont sur le graphe \textbf{non-pondéré} (on compte juste le nombre d'arêtes).
-	\item On utilise une Queue avec au départ tout les noeuds de départ
+	\item On utilise une Queue avec au départ tous les noeuds de départ
 	\item Boucle tant que la queue n'est pas vide:
 		\begin{itemize}
 			\item Pop queue
@@ -637,7 +637,7 @@ $\mathcal{O}(V+E)$
 \frametitle{DFS (while loop)}
 \begin{itemize}
 	\item Objectif: visiter tout le graphe en partant d'un/plusieurs noeuds. Ordre: plus profond d'abord
-	\item On utilise une Stack avec au départ tout les noeuds de départ
+	\item On utilise une Stack avec au départ tous les noeuds de départ
 	\item Boucle tant que la stack n'est pas vide:
 	\begin{itemize}
 		\item Pop stack
@@ -743,8 +743,8 @@ $\mathcal{O}(E \log V)$
 \frametitle{Kruskal}
 \begin{itemize}
 	\item Calcul d'un arbre sous-tendant
-	\item Partir d'un graphe sans les arêtes, mais avec tout les noeuds
-	\item Trier toute les arêtes par poids
+	\item Partir d'un graphe sans les arêtes, mais avec tous les noeuds
+	\item Trier toutes les arêtes par poids
 	\item Pour chaque arête:
 	\item Si mettre l'arête ne crée pas de cycle (à vérifier avec un UF), l'ajouter au graphe
 	\item S'arrêter après $n-1$ arêtes ajoutées.
@@ -756,7 +756,7 @@ $\mathcal{O}(E \log V)$
 \frametitle{Dijkstra}
 \begin{itemize}
 	\item Calcul de tous les chemins les plus courts (au sens "somme des poids des arêtes du chemin") partant d'un noeud donné, dans un graphe \textbf{pondéré}.
-	\item Maintien d'un tableau de distance vers tout les noeuds, initialement à l'infini
+	\item Maintien d'un tableau de distance vers tous les noeuds, initialement à l'infini
 	\item La distance vers le noeud de départ est 0
 	\item Une PQ maintien les noeuds vus, mais pas encore visités
 	\item Mettre le noeud original et sa distance actuelle dans la PQ
@@ -767,7 +767,7 @@ $\mathcal{O}(E \log V)$
 		\item Regarder tous les voisins du noeud. Si la nouvelle distance est plus courte, mettre à jour le tableau distance et ajouter noeud+distance à la PQ.
 	\end{itemize}
 	\item Dès qu'un noeud est pop par la PQ, la distance min est connue.
-	\item Attention, pas de support des poids négatif du coup...
+	\item Attention, pas de support des poids négatifs du coup...
 \end{itemize}
 $\mathcal{O}((V+E)\log V)$
 \end{frame}
@@ -775,7 +775,7 @@ $\mathcal{O}((V+E)\log V)$
 \begin{frame}[fragile]
 \frametitle{Bellman-ford}
 \begin{itemize}
-	\item Calcul de tout les chemins les plus courts partant d'un noeud donné.
+	\item Calcul de tous les chemins les plus courts partant d'un noeud donné.
 	\item L'idée est de calculer tout d'abord tous les chemins de taille 1 (d'une seule arête), puis tous les chemins de taille 2, ...
 	\item L'implémentation fait 4 lignes.
 	\item Support pour les poids négatif, mais pas les cycle négatifs!
@@ -799,7 +799,7 @@ $\mathcal{O}(V^3)$
 \begin{frame}[fragile]
 \frametitle{Chemin le plus long}
 \begin{itemize}
-	\item Il est conjecturé qu'il n'existe pas d'algorithme en temps polynomial pour trouver le chemin le plus long dans un graphe quelconque. (plus d'information dans le cours de Calculabilité (Q6) et d'Algorithmique Avandée pour l'Optimisation (master)).
+	\item Il est conjecturé qu'il n'existe pas d'algorithme en temps polynomial pour trouver le chemin le plus long dans un graphe quelconque. (plus d'informations dans le cours de Calculabilité (Q6) et d'Algorithmique Avandée pour l'Optimisation (master)).
 	\item Si le graphe est un DAG (graphe dirigé acyclique) alors il existe un algorithme polynomial: prendre l'opposé des poids des arêtes, et utiliser Bellman-ford.
 	\item Cela marche car il y a aura des poids négatifs, mais pas de cycles négatifs vu que le graphe est acyclique.
 \end{itemize}
